@@ -1,0 +1,42 @@
+<div class="szgjj-login "style="display: block;width:720px;background: #fff;border: 1px solid #c9d7df; overflow: hidden;border-radius: 5px;position:absolute;left: 50%; top:50%;margin: -150px 0 0 -360px;">
+    <div style="padding: 20px 30px;overflow: hidden;font-family: 'helvetica neue','helvetica','microsoft yahei';">
+        <div style="float: left;width: 55%;">
+            <div style="float: left;"> <img src="assets/logo.jpg" style="width: 120px;" /></div>
+            <div style="overflow: hidden;padding:0 20px">
+                <div>
+                    <span style="font-size: 18px;">大数据分析平台</span>                    
+                </div>
+                <p style="color: #999;line-height: 1.5;margin: 10px 0 0;font-size: 14px;">
+                    深圳市公积金中心
+                </p>
+                <p style="color: #999;line-height: 1.5;margin: 10px 0 0;font-size: 14px;">
+                    营业网点大数据分析演示平台
+                </p>
+            </div>
+        </div>
+        <div style="overflow: hidden;padding: 0 0 0 30px;font-size: 14px; border-left: 1px solid #eee;">
+            <div class="row" style="margin-left: 0px; width:100%">
+                    <span style="font-size: 12px; font-family: 'MicroSoft Yahei'">
+                    <a href="javascript:alert('尚未开放注册功能，请联系系统管理员')" data-translate="Register">注册</a>
+                </span>
+                <!--<div class="login-language" style="display: inline-table; float:right;">
+                    <img src="./img/CN.png" data-ng-class="zhLangClass" data-ng-click="setLang('zh')">
+                    <img src="./img/US.png" data-ng-class="enLangClass" data-ng-click="setLang('en')">
+                    <img src="./img/ES.png" data-ng-class="esLangClass" data-ng-click="setLang('es')">
+                </div>-->
+            </div>
+            <div style="margin: 10px 0 0;">
+                <!--<label style="color: #999;">Email</label>-->
+                <input type="text" [(ngModel)]="user.email" id="inputemail" placeholder="用户名" style="text-align: center;"
+                       data-emojiable="true">
+            </div>
+            <div style="margin: 10px 0 0;">
+                <input type="password"  [(ngModel)]="user.password" placeholder="密码" style="text-align: center;" (keyup.enter)="gotoMain()">
+            </div>
+            <div style="margin: 10px 0 0;text-align: right; vertical-align: bottom">
+                <a href="javascript:alert('尚未开放此项功能，请联系系统管理员')" style="color: #999;float: left" data-ng-click="forgotPassword()">忘记密码</a>
+                <button class="gjj-login-button" (click)="gotoMain()">登陆</button>
+            </div>
+        </div>
+    </div>
+</div>

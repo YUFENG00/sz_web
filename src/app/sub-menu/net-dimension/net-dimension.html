@@ -1,0 +1,114 @@
+<div class="row">
+  <div class="col-md-12 ">
+    <ul class="nav nav-tabs">
+      <li role="presentation" *ngFor="let cha of chartNames;let i=index " [ngClass]="{'active':pickChart==i}"><a href="javascript:void(0);" (click)="diffChart(i)">{{cha}}</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="row" style="margin:10px 0px">
+  <div class="col-md-2 col-md-offset-4 ">
+    <div class="dropdown" *ngIf='pickChart!=1'>
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuregion" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="true">
+        选择地区：
+    {{regionPicker}}
+    <span class="caret"></span>
+  </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuregion">
+        <li><a href="javascript:void(0);" *ngFor="let region of regionName " (click)="diffRegionMarket(region)">{{region}}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="dropdown" *ngIf='pickChart!=1'>
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenubank" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="true">
+        选择银行：
+    {{bankPicker}}
+    <span class="caret"></span>
+  </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenubank">
+        <li><a href="javascript:void(0);" *ngFor="let bank of bankName " (click)="diffBankMarket(bank)">{{bank}}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <gjj-datepicker [primaryData]="primaryData" (datechange)="datePicker($event)"></gjj-datepicker>
+  </div>
+</div>
+<div class="row " style="margin:10px 0px" *ngIf='pickChart==2'>
+  <a href="javascript:void(0);" [ngClass]="{'btn-info':netTaskPicker==netName}" style="text-decoration:none;text-align:center;padding:10px 0" class="col-md-2" *ngFor="let netName of netNameIndexArray" (click)="diffNetTask(netName)" >
+    {{netName}}
+  </a>
+</div>
+
+<div *ngIf='totalTaskTrendShow&&pickChart==0' class="panel panel-default">
+  <div class="panel-heading">网点总业务量趋势</div>
+  <div class="panel-body">
+    <line-chart [chartData]='totalTaskTrend'></line-chart>
+  </div>
+</div>
+<div *ngIf='taskRankTrendShow&&pickChart==1' class="panel panel-default">
+  <div class="panel-heading">业务量排名</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6 ">
+        <div style="margin-top:10px">
+          <div style="text-align:center;font-size: 18px">网点前20名</div>
+          <table class="table">
+            <thead>
+              <tr>
+
+                <th>网点名</th>
+                <th>网点业务量</th>
+              </tr>
+            </thead>
+            <tr *ngFor="let table of toptableList">
+              <th> {{table.name}}</th>
+              <td>{{table.num}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-6 ">
+        <div style="margin-top:10px">
+          <div style="text-align:center;font-size: 18px">网点后20名</div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>网点名</th>
+                <th>网点业务量</th>
+              </tr>
+            </thead>
+            <tr *ngFor="let table of lasttableList">
+              <th> {{table.name}}</th>
+              <td>{{table.num}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div *ngIf='taskProportion' class="panel panel-default">
+  <div class="panel-heading">业务量类别比例</div>
+  <div class="panel-body">
+    <pie-chart [chartData]='taskProportion'></pie-chart>
+  </div>
+</div>
+
+<div *ngIf='netTask1ProportShow' class="panel panel-default">
+  <div class="panel-heading">业务1占比</div>
+  <div class="panel-body">
+    <line-chart [chartData]='netTask1Proport'></line-chart>
+  </div>
+</div>
+<div *ngIf='netTask2ProportShow' class="panel panel-default">
+  <div class="panel-heading">业务2占比</div>
+  <div class="panel-body">
+    <line-chart [chartData]='netTask2Proport'></line-chart>
+  </div>
+</div>

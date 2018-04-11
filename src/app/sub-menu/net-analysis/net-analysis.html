@@ -1,0 +1,127 @@
+<div class="row" style="margin:10px 0px">
+  <div class="col-md-2 col-md-offset-6 ">
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu0" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="true">
+        最小业务量占比:{{selectedBratio*100 + '%'}}
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu0">
+        <li>
+          <a href="javascript:void(0);" *ngFor="let bratio of bratioList " (click)="changeBratio(bratio)">{{bratio*100 + '%'}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="true">
+        最小点覆半径:{{selectedRadius}}米
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li>
+          <a href="javascript:void(0);" *ngFor="let radius of radiusList " (click)="changeRadius(radius)">{{radius}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-md-2 ">
+    <button class="btn btn-default" (click)=showMinNode()>查看最小点信息</button>
+  </div>
+</div>
+
+<div #mapContainer class="mapContainer" [style.height]="_height"></div>
+
+<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" bsModal #autoShownModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-bg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">当前分组业务量占比</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <pie-chart  [chartData]='bratioPie'></pie-chart>
+          <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>网点名</th>
+                    <th>业务量</th>
+                    <th>业务量占比</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let x of bratioPie'>
+                    <th>{{x.name}}</th>
+                    <td>{{x.bsum}}</td>
+                    <td>{{(x.bratio*100).toFixed(2) + '%'}}</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="minNodeShown" [config]="{ show: true }" (onHidden)="onHidden()" bsModal #autoShownModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" style="height:600px;overflow-y:scroll;">
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">业务量最小点信息</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>地区\银行</th>
+                        <th *ngFor='let bank of bankList'>{{bank}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let x of regionList'>
+                        <th>{{x.region}}</th>
+                        <td>{{x.zxyh}}</td>
+                        <td>{{x.zhongh}}</td>
+                        <td>{{x.jiaoh}}</td>
+                        <td>{{x.xyyh}}</td>
+                        <td>{{x.gh}}</td>
+                        <td>{{x.jianh}}</td>
+                        <td>{{x.zhaoh}}</td>
+                        <td>{{x.glb}}</td>
+                    </tr>
+                </tbody>
+              </table>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>序号</th>
+                    <th>网点名</th>
+                    <th>地区</th>
+                    <th>银行</th>
+                    <th>业务量</th>
+                    <th>业务量占比</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor='let x of minNodeList;let index = index'>
+                    <th>{{index+1}}</th>
+                    <th><a style="cursor:pointer" (click)='minNodeDetail(x)'>{{x.name}}</a></th>
+                    <th>{{x.region}}</th>
+                    <th>{{x.bankname}}</th>
+                    <td>{{x.bsum}}</td>
+                    <td>{{(x.bratio*100).toFixed(2) + '%'}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+      </div>
+    </div>
+  </div>

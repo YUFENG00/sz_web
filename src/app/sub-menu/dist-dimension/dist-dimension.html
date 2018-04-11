@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-md-12 ">
+    <ul class="nav nav-tabs">
+      <li role="presentation" *ngFor="let cha of chartNames;let i=index " [ngClass]="{'active':pickChart==i}"><a href="javascript:void(0);" (click)="diffChart(i)">{{cha}}</a></li>
+    </ul>
+  </div>
+</div>
+<div class="row" style="margin:10px 0px">
+  <div class="col-md-2 col-md-offset-6">
+    <div class="dropdown" *ngIf='pickChart==0'>
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenubank" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="true">
+        选择区域：
+    {{regionPicker}}
+    <span class="caret"></span>
+  </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenubank">
+        <li><a href="javascript:void(0);" *ngFor="let region of regionNameArr " (click)="diffRegionMarket(region)">{{region}}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <gjj-datepicker [primaryData]="primaryData" (datechange)="datePicker($event)"></gjj-datepicker>
+  </div>
+</div>
+
+<div *ngIf='totalTaskTrendShow' class="panel panel-default">
+  <div class="panel-heading">总业务量趋势</div>
+  <div class="panel-body">
+    <line-chart [chartData]='totalTaskTrend'></line-chart>
+  </div>
+</div>
+
+<div *ngIf='taskRegionTrendShow' class="panel panel-default">
+  <div class="panel-heading">业务量排名</div>
+  <div class="panel-body">
+    <bar-chart [chartData]='taskRankTrend'></bar-chart>
+  </div>
+</div>
+<div *ngIf='taskAveRegionTrendShow' class="panel panel-default">
+  <div class="panel-heading">业务量平均排名趋势</div>
+  <div class="panel-body">
+    <bar-chart [chartData]='taskAveRankTrend'></bar-chart>
+  </div>
+</div>

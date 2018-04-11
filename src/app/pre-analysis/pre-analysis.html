@@ -1,0 +1,19 @@
+<div class="row" style="width:100%;margin:0px">
+    <div class="col-md-2" style="padding:0 20px;text-align:center">
+      <ul class="nav nav-pills">
+        <li style="width:100%" role="presentation" [ngClass]="{'active':selectIndex==1}"><a routerLink='netmap' (click)="gotoTabOne()" routerLinkActive="active">网点数据图</a></li>
+      </ul>
+       <ul class="nav nav-pills">
+        <li style="width:100%" role="presentation" [ngClass]="{'active':selectIndex==2}"><a routerLink='heatmap' (click)="gotoHeatmap()" routerLinkActive="active">人口分布图</a></li>
+      </ul>
+      <ul class="nav nav-pills">
+        <li style="width:100%" role="presentation" [ngClass]="{'active':selectIndex==3}"><a routerLink='netanalysis' (click)="gotoNetAnalysis()" routerLinkActive="active">网点数据分析</a></li>
+      </ul>
+      <ul class="nav nav-pills">
+        <li style="width:100%" role="presentation" [ngClass]="{'active':selectIndex==4}"><a routerLink='predictnode' (click)="gotoPredictNode()" routerLinkActive="active">新网点业务量预测</a></li>
+      </ul>
+    </div>
+    <div class="col-md-10">
+      <router-outlet></router-outlet>
+    </div>
+</div>    

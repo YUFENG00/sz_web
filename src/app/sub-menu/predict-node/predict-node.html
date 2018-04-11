@@ -1,0 +1,52 @@
+<div class="row" style="margin:10px 0px" id="cursor">
+    <!-- <div class="col-md-2 col-md-offset-6 ">
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu0" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="true">
+          请选择区域:{{selectedRegion.region}}
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu0">
+          <li>
+            <a href="javascript:void(0);" *ngFor="let region of regionList " (click)="changeRegion(region)">{{region.region}}</a>
+          </li>
+        </ul>
+      </div>
+    </div> -->
+  
+    <div class="col-md-2 col-md-offset-6">
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="true">
+          请选择银行:{{selectedBank.name}}
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li>
+            <a href="javascript:void(0);" *ngFor="let bank of bankList " (click)="changeBank(bank)">{{bank.name}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <button class="btn btn-default" type="button" (click)='chooseNode()'>
+        开始选点
+      </button>
+    </div>
+
+    <div class="col-md-2">
+      <span>具体地址：{{detailAdds}}</span> 
+    </div>
+  
+    <!-- <div class="col-md-2">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="输入具体地址" #adds>
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" (click)="startPredict(adds.value)">开始预测</button>
+            </span>
+        </div>
+    </div> -->
+</div>
+
+<div #mapContainer class="mapContainer" [style.height]="_height"></div>

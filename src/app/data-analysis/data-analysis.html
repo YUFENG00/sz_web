@@ -1,0 +1,11 @@
+<div class="row" style="width:100%;margin:0px">
+    <div class="col-md-2" style="padding:0 20px;text-align:center">
+       <ul class="nav nav-pills" *ngFor="let subMenu of subMenuArray;let i=index " >
+        <li style="width:100%" role="presentation" [ngClass]="{'active':selectIndex==i}">
+          <a routerLink={{subMenu.routerLink}} (click)="goto(i)" routerLinkActive="active">{{subMenu.name}}</a></li>
+      </ul> 
+    </div>
+    <div class="col-md-10">
+      <router-outlet></router-outlet>
+    </div>
+</div>

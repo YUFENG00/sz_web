@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+    font-family: "PingFang SC", "helvetica", "helvetica neue", "Microsoft YaHei";
+    position: static;
+    background-color: #f0f4f7
+}
+.szgjj-login input {
+    margin-top: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #c9d7df;
+    border-radius: 2px;
+    width: 100%;
+    outline: none;
+}
+.szgjj-login button {
+    outline: none;
+}
+
+
+
+
+  
+

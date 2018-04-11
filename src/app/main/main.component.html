@@ -1,0 +1,77 @@
+<div class="row" style="margin:0px">
+  <div class="col-md-12" style="padding:0px">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+            aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+          <a class="navbar-brand" href="javascript:void(0);">增长引擎</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li [ngClass]="{'active':selectIndex==1}"><a routerLink='dataAnalysis' (click)="gotoDataAnalysis()" routerLinkActive="active">数据分析</a></li>
+            <li [ngClass]="{'active':selectIndex==2}"><a routerLink='preAnalysis' (click)="gotoPreAnalysis()" routerLinkActive="active">预测分析</a></li>
+            <li [ngClass]="{'active':selectIndex==3}"><a routerLink='otherAnalysis' (click)="gotoOtherAnalysis()" routerLinkActive="active">其他分析</a></li>
+            <li [ngClass]="{'active':selectIndex==4}"><a href="http://dev.engyne.net:8088/login/" target="_Blank" routerLinkActive="active">分析工具</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="javascript:void(0);" (click)="test()" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{nickname}}<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="javascript:void(0);" (click)="parentModal.show()">修改密码</a></li>
+                <li><a href="javascript:void(0);" (click)="loginOut()">退出登陆</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  </div>
+</div>
+<div class="modal fade" bsModal #parentModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">修改密码</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="parentModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="inputOldPassword" class="col-sm-3 control-label">原密码</label>
+            <div class="col-sm-5">
+              <input type="password" class="form-control"  name="old" [(ngModel)]="password.old" id="inputOldPassword" placeholder="原密码">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword" class="col-sm-3 control-label">新密码</label>
+            <div class="col-sm-5">
+              <input type="password" class="form-control" name="new" [(ngModel)]="password.new" id="inputPassword" placeholder="新密码">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword1" class="col-sm-3 control-label">确认新密码</label>
+            <div class="col-sm-5">
+              <input type="password" class="form-control" name="new1" [(ngModel)]="password.new1" id="inputPassword1" placeholder="确认新密码">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-10 col-sm-2">
+              <button type="submit" class="btn btn-default" (click)="changePassword()">确认</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

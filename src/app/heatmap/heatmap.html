@@ -1,0 +1,16 @@
+<div class="row" style="margin:10px 0px">
+    <div class="col-md-2 col-md-offset-6">
+        <button class="btn btn-default" [ngClass]="{'btn-success':showXzl}" (click)=overlayXzl()>{{btnOptionXzl}}写字楼数据</button>
+    </div>
+
+    <div class="col-md-2">
+        <button class="btn btn-default" [ngClass]="{'btn-success':showXq}" (click)=overlayXq()>{{btnOptionXq}}小区数据</button>
+    </div>
+
+  <div class="col-md-2 ">
+    <button class="btn btn-default" [ngClass]="{'btn-success':showStation}" (click)=overlayBank()>{{btnOptionBank}}网点数据</button>
+  </div>
+</div>
+<div #mapContainer class="mapContainer" [style.height]="_height"></div>
+
+

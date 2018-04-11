@@ -1,0 +1,6 @@
+<div class="col-md-6  form-group">
+    <input class="form-control" #drp="bsDaterangepicker" (bsValueChange)="test($event)" bsDaterangepicker [(ngModel)]="bsRangeValue">
+  </div>
+  <div class="col-md-6 form-group">
+    <button class="btn btn-success" (click)="drp.toggle()">选择日期</button>
+  </div>

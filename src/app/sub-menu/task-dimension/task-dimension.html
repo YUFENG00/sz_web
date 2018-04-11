@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="col-md-12 ">
+    <ul class="nav nav-tabs">
+      <li role="presentation" *ngFor="let cha of chartNames;let i=index " [ngClass]="{'active':pickChart==i}"><a href="javascript:void(0);" (click)="diffChart(i)">{{cha}}</a></li>
+    </ul>
+  </div>
+</div>
+<div class="row" style="margin:10px 0px">
+  <div class="col-md-3 col-md-offset-5">
+    <div class="dropdown" *ngIf='pickChart==1'>
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenubank" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="true">
+        选择业务1：
+    {{task1Picker}}
+    <span class="caret"></span>
+  </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenubank">
+        <li><a href="javascript:void(0);" *ngFor="let task1 of task1List " (click)="diffBankMarket(task1)">{{task1.name}}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <gjj-datepicker [primaryData]="primaryData" (datechange)="datePicker($event)"></gjj-datepicker>
+  </div>
+</div>
+<div *ngIf='proportShow' class="panel panel-default">
+  <div class="panel-heading">业务1占比</div>
+  <div class="panel-body">
+    <line-chart [chartData]='taskProport'></line-chart>
+  </div>
+</div>
+<div *ngIf='proportShow2' class="panel panel-default">
+  <div class="panel-heading">业务2占比</div>
+  <div class="panel-body">
+    <line-chart [chartData]='taskProport2'></line-chart>
+  </div>
+</div>
+<div *ngIf='totalTaskTrendShow' class="panel panel-default">
+  <div class="panel-heading">业务量趋势</div>
+  <div class="panel-body">
+    <line-chart [chartData]='totalTaskTrend'></line-chart>
+  </div>
+</div>
+<div *ngIf='proportShow' class="panel panel-default">
+  <div class="panel-heading">业务量排名</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6 ">
+        <div style="margin-top:10px">
+          <div style="text-align:center;font-size: 18px">业务类型1</div>
+          <table class="table">
+            <thead>
+              <tr>
+
+                <th>业务名</th>
+                <th>业务量</th>
+              </tr>
+            </thead>
+            <tr *ngFor="let table of task1List">
+              <th> {{table.name}}</th>
+              <td>{{table.value}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-6 ">
+        <div style="margin-top:10px">
+          <div style="text-align:center;font-size: 18px">业务类型2</div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>业务名</th>
+                <th>业务量</th>
+              </tr>
+            </thead>
+            <tr *ngFor="let table of task2List">
+              <th> {{table.name}}</th>
+              <td>{{table.value}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

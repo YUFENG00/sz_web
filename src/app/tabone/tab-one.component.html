@@ -1,0 +1,77 @@
+<div class="row" style="margin:10px 0px">
+  <div class="col-md-2 col-md-offset-8 ">
+
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="true">
+        选择地区：
+    {{regionPicker}}
+    <span class="caret"></span>
+  </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><a href="javascript:void(0);" *ngFor="let region of regionList " (click)="diffRegionMarket(region)">{{region}}</a></li>
+      </ul>
+    </div>
+  </div>
+   <div class="col-md-2">
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="true">
+        选择银行：
+    {{bankPicker}}
+    <span class="caret"></span>
+  </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <li><a href="javascript:void(0);" *ngFor="let bank of bankList " (click)="diffBankMarket(bank)">{{bank}}</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div #bankNetmapContainer class="mapContainer" [style.height]="_height"></div>
+<!--<div style="height:800px">
+  <div *ngIf="mapShow" style="width:100%" style="height:100%" >
+    <baidu-map [options]="opts" style="display: block; width:100%;height:100%">
+      <control type="navigation" [options]="controlOpts"></control>
+      <control type="scale" [options]="scaleOpts"></control>
+      <control type="maptype" [options]="mapTypeOpts"></control>
+      <marker *ngFor="let marker of markers " [point]="marker.point" [options]="marker.options" (clicked)="showWindow($event,marker.index)"></marker>
+    </baidu-map>
+  </div>
+
+</div>-->
+<!-- 网点年龄和月缴存额 分布 -->
+<div *ngIf="distModalShown && ageRangePie && saveRangePie" [config]="{ show: true }" (onHidden)="onHidden()" bsModal #autoShownModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">{{currentNode.stationName}}——公积金业务客户年龄及月缴存额分布</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>地址：{{currentNode.address}}</div>
+        <div>名称：{{currentNode.netNode}}</div>
+        <pie-chart  [chartData]='ageRangePie'></pie-chart>
+        <pie-chart  [chartData]='saveRangePie'></pie-chart>
+
+        <table class="table table-bordered" *ngIf='rlTaskList'>
+          <caption>网点关联业务列表</caption>
+          <thead>
+              <tr>
+                  <th>关联业务</th>
+                  <th>关联概率</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor='let x of rlTaskList'>
+                  <td>{{x.tasked.concat(x.tasking).join('——')}}</td>
+                  <td>{{(x.taskRatio*100).toFixed(2) + '%'}}</td>
+              </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
